@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://db0afhfmluqou"]
+[gd_scene load_steps=3 format=3 uid="uid://db0afhfmluqou"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_r23eo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ovcua"]
 
 [node name="Node2D" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_r23eo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ovcua")
