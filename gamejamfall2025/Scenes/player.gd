@@ -22,3 +22,24 @@ func _physics_process(delta):
 	
 func _animate():
 	pass
+
+
+# Creates our projectile where we want it and gives it the proper direction
+func shoot_projectile():
+	pass
+	## Creates a potion scene
+	#var potion_instance = Potion.instantiate()
+	## Adds that 
+	#get_parent().add_child(potion_instance)
+	## Handles potion spawn position and direction
+	#potion_instance.global_position = THROW_POSITION.global_position
+	#var target = get_global_mouse_position()
+	#var direction_to_mouse = potion_instance.global_position.direction_to(target).normalized()
+	#potion_instance.set_direction(direction_to_mouse)
+	## Assigns the newly made potion its type
+	#potion_instance.potion_type = next_potion
+	## Picks the next random potion for the player
+	#pick_random_potion()
+	
+func die():
+	pass
