@@ -8,6 +8,8 @@ var mouse_position: Vector2
 
 @onready var GUN_PIVOT = $GunPivot
 @onready var GUN_SPRITE = $GunPivot/gun/GunSprite
+@onready var PROJECTILE_POSITION = $GunPivot/gun/ProjectilePosition
+@onready var PLAYER_SPRITE = $Miguel
 
 func _ready():
 	pass
@@ -24,7 +26,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 		
-	handle_gun_position(mouse_position)
+	handle_player_and_gun_position(mouse_position)
 	
 func _animate():
 	pass
@@ -47,12 +49,16 @@ func shoot_projectile():
 	#pick_random_potion()
 	
 
-func handle_gun_position(mouse_position):
+func handle_player_and_gun_position(mouse_position):
 	GUN_PIVOT.look_at(get_global_mouse_position())
 	if (mouse_position.x < position.x):
 		GUN_SPRITE.flip_v = true
+		PLAYER_SPRITE.flip_h = true
+		PROJECTILE_POSITION.position.y = 14
 	else:
 		GUN_SPRITE.flip_v = false
+		PLAYER_SPRITE.flip_h = false
+		PROJECTILE_POSITION.position.y = -14
 
 func die():
 	pass
