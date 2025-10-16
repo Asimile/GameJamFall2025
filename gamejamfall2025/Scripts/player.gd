@@ -1,28 +1,33 @@
 extends CharacterBody2D
 
-var MOVEMENT_SPEED = 5
+var INPUT_VECTOR = Vector2(0, 0)
+
+var MOVEMENT_SPEED = 200
+
+var mouse_position: Vector2
+
+@onready var GUN_PIVOT = $GunPivot
+@onready var GUN_SPRITE = $GunPivot/gun/GunSprite
 
 func _ready():
 	pass
 
 # This is code that runs every single frame
 func _physics_process(delta):
+	mouse_position = get_global_mouse_position()
 	
-	# Handles moving the player up, down, left, and right. Relies on move_and_slide() at the end of the function
-	if Input.is_action_pressed("move_up"):
-		position.y -= MOVEMENT_SPEED
-	if Input.is_action_pressed("move_down"):
-		position.y += MOVEMENT_SPEED
-	if Input.is_action_pressed("move_left"):
-		position.x -= MOVEMENT_SPEED
-	if Input.is_action_pressed("move_right"):
-		position.x += MOVEMENT_SPEED
+	#get input direction
+	INPUT_VECTOR.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	INPUT_VECTOR.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	
+	velocity = INPUT_VECTOR.normalized() * MOVEMENT_SPEED
+	
+	move_and_slide()
 		
-		
+	handle_gun_position(mouse_position)
 	
 func _animate():
 	pass
-
 
 # Creates our projectile where we want it and gives it the proper direction
 func shoot_projectile():
@@ -41,5 +46,13 @@ func shoot_projectile():
 	## Picks the next random potion for the player
 	#pick_random_potion()
 	
+
+func handle_gun_position(mouse_position):
+	GUN_PIVOT.look_at(get_global_mouse_position())
+	if (mouse_position.x < position.x):
+		GUN_SPRITE.flip_v = true
+	else:
+		GUN_SPRITE.flip_v = false
+
 func die():
 	pass
