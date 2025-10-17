@@ -1,9 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://da7rbd7m8dra0"]
+[gd_scene load_steps=12 format=3 uid="uid://da7rbd7m8dra0"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_gmcf4"]
 [ext_resource type="Texture2D" uid="uid://c1v00cmetpb21" path="res://icon.svg" id="2_dy3eh"]
+[ext_resource type="Texture2D" uid="uid://y3rtcsoqkhhx" path="res://Assets/ratat.png" id="3_jmwfg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cp4y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldt87"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(0, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7oa3"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(48, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaff4"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(96, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piern"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(144, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugaoj"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(192, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu2e8"]
+atlas = ExtResource("3_jmwfg")
+region = Rect2(240, 0, 48, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdhtk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldt87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7oa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaff4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piern")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugaoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu2e8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="enemy" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -14,5 +65,11 @@ shape = SubResource("CircleShape2D_cp4y3")
 debug_color = Color(0.986704, 0, 0.320819, 0.42)
 
 [node name="PlaceholderSprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("2_dy3eh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pdhtk")
+animation = &"walk"
+frame_progress = 0.200245
